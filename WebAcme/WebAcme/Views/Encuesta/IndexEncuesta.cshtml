@@ -1,0 +1,72 @@
+﻿@using ACME.Helper
+@using ACME.Models
+@model EncuestasDto
+
+<div class="card">
+    <div class="card-body" style="margin-top: 2px">
+        <div class="ml-2 align-self-center">
+            <h3 class="text-themcolor mb-o">Encuesta</h3>
+        </div>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="~/Home/Index">Home</a></li>
+                <li class="breadcrumb-item active">Encuesta</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<br />
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <a href="~/Encuesta/AgregarEncuesta" class="btn btn-default btn-primary" style="width:100px">Agregar</a>
+                <br />
+                <br />
+                <div class="table-responsive">
+                    <table id="demo-foo-addrow" class="table table-bordered m-t-30 table-hover" data-paging="true" data-paging-size="7">
+                        <thead style="background-color:#1e88e5;">
+                            <tr style="color:white;">
+                                <th width="30%">Nombre</th>
+                                <th width="35%">Descripción</th>
+                                <th width="20%">Link</th>
+                                <th width="15%"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                @foreach (var item in Model.Encuestas)
+                                {
+                                <tr>
+                                <td>@Html.DisplayFor(i => item.Nombre)</td>
+                                <td>@Html.DisplayFor(i => item.Descripcion)</td>
+                                <td>@Html.DisplayFor(i => item.Link)</td>
+                                <td>
+                                        <a href="@Url.Action("IndexCamposEncuesta", "Encuesta", new { IdEncuesta = item.Id })" class="text-inverse" data-toggle="tooltip" data-original-title="Campos Encuesta">
+                                            <i class="fa fa-plus"></i>
+                                        </a>
+                                        <a href="@Url.Action("ResultadosEncuesta", "Encuesta", new { IdEncuesta = item.Id })" class="text-inverse" data-toggle="tooltip" data-original-title="Resultados Encuesta">
+                                            <i class="fa fa-file"></i>
+                                        </a>
+                                        <a data-toggle="tooltip">|</a>
+                                        <a href="~/Encuesta/EditarEncuesta/@item.Id" class="text-inverse" data-toggle="tooltip" data-original-title="Modificar"><i class="fa fa-pencil"></i></a>
+                                        <a href="~/Encuesta/EliminarEncuesta/@item.Id" class="text-inverse" data-toggle="tooltip" data-original-title="Eliminar"> <i class="fa fa-trash"></i></a>
+                                </td>
+                            </tr>
+                                }
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-lg-10">
+                        <div class="grid-container text-truncate">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

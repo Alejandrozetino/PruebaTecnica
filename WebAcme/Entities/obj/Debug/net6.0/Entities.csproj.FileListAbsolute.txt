@@ -1,0 +1,24 @@
+C:\Users\Alejandro\Desktop\WebAcme\Entities\bin\Debug\net6.0\Entities.deps.json
+C:\Users\Alejandro\Desktop\WebAcme\Entities\bin\Debug\net6.0\Entities.dll
+C:\Users\Alejandro\Desktop\WebAcme\Entities\bin\Debug\net6.0\Entities.pdb
+C:\Users\Alejandro\Desktop\WebAcme\Entities\obj\Debug\net6.0\Entities.csproj.AssemblyReference.cache
+C:\Users\Alejandro\Desktop\WebAcme\Entities\obj\Debug\net6.0\Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Alejandro\Desktop\WebAcme\Entities\obj\Debug\net6.0\Entities.AssemblyInfoInputs.cache
+C:\Users\Alejandro\Desktop\WebAcme\Entities\obj\Debug\net6.0\Entities.AssemblyInfo.cs
+C:\Users\Alejandro\Desktop\WebAcme\Entities\obj\Debug\net6.0\Entities.csproj.CoreCompileInputs.cache
+C:\Users\Alejandro\Desktop\WebAcme\Entities\obj\Debug\net6.0\Entities.dll
+C:\Users\Alejandro\Desktop\WebAcme\Entities\obj\Debug\net6.0\refint\Entities.dll
+C:\Users\Alejandro\Desktop\WebAcme\Entities\obj\Debug\net6.0\Entities.pdb
+C:\Users\Alejandro\Desktop\WebAcme\Entities\obj\Debug\net6.0\ref\Entities.dll
+G:\Estudio\Ruta programador\C#\Asp.Net Core Entity Framework\Prueba Técnica\WebAcme\Entities\bin\Debug\net6.0\Entities.deps.json
+G:\Estudio\Ruta programador\C#\Asp.Net Core Entity Framework\Prueba Técnica\WebAcme\Entities\bin\Debug\net6.0\Entities.dll
+G:\Estudio\Ruta programador\C#\Asp.Net Core Entity Framework\Prueba Técnica\WebAcme\Entities\bin\Debug\net6.0\Entities.pdb
+G:\Estudio\Ruta programador\C#\Asp.Net Core Entity Framework\Prueba Técnica\WebAcme\Entities\obj\Debug\net6.0\Entities.csproj.AssemblyReference.cache
+G:\Estudio\Ruta programador\C#\Asp.Net Core Entity Framework\Prueba Técnica\WebAcme\Entities\obj\Debug\net6.0\Entities.GeneratedMSBuildEditorConfig.editorconfig
+G:\Estudio\Ruta programador\C#\Asp.Net Core Entity Framework\Prueba Técnica\WebAcme\Entities\obj\Debug\net6.0\Entities.AssemblyInfoInputs.cache
+G:\Estudio\Ruta programador\C#\Asp.Net Core Entity Framework\Prueba Técnica\WebAcme\Entities\obj\Debug\net6.0\Entities.AssemblyInfo.cs
+G:\Estudio\Ruta programador\C#\Asp.Net Core Entity Framework\Prueba Técnica\WebAcme\Entities\obj\Debug\net6.0\Entities.csproj.CoreCompileInputs.cache
+G:\Estudio\Ruta programador\C#\Asp.Net Core Entity Framework\Prueba Técnica\WebAcme\Entities\obj\Debug\net6.0\Entities.dll
+G:\Estudio\Ruta programador\C#\Asp.Net Core Entity Framework\Prueba Técnica\WebAcme\Entities\obj\Debug\net6.0\refint\Entities.dll
+G:\Estudio\Ruta programador\C#\Asp.Net Core Entity Framework\Prueba Técnica\WebAcme\Entities\obj\Debug\net6.0\Entities.pdb
+G:\Estudio\Ruta programador\C#\Asp.Net Core Entity Framework\Prueba Técnica\WebAcme\Entities\obj\Debug\net6.0\ref\Entities.dll

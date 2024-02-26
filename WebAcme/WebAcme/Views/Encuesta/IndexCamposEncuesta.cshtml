@@ -1,0 +1,69 @@
+﻿@using ACME.Helper
+@using ACME.Models
+@model CamposEncuestasDto
+
+<div class="card">
+    <div class="card-body" style="margin-top: 2px">
+        <div class="ml-2 align-self-center">
+            <h3 class="text-themcolor mb-o">Encuesta</h3>
+        </div>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="~/Home/Index">Home</a></li>
+                <li class="breadcrumb-item"><a href="~/Encuesta/IndexEncuesta">Encuestas</a></li>
+                <li class="breadcrumb-item active">Campos Encuesta</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<br />
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <a href="@Url.Action("AgregarCamposEncuesta", "Encuesta", new { IdEncuesta = @ViewBag.IdEncuesta })" class="btn btn-default btn-primary" data-toggle="tooltip" data-original-title="Campos Encuesta">Agregar</a>
+               
+                <br />
+                <br />
+                <div class="table-responsive">
+                    <table id="demo-foo-addrow" class="table table-bordered m-t-30 table-hover" data-paging="true" data-paging-size="7">
+                        <thead style="background-color:#1e88e5;">
+                            <tr style="color:white;">
+                                <th width="30%">Nombre del campo</th>
+                                <th width="30%">Titulo del campo</th>
+                                <th width="10%">Es requerido</th>
+                                <th width="20%">Tipo de campo</th>
+                                <th width="10%"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.CamposEncuestas)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(i => item.NombreCampo)</td>
+                                    <td>@Html.DisplayFor(i => item.TituloCampo)</td>
+                                    <td>@Html.DisplayFor(i => item.EsRequerido)</td>
+                                    <td>@Html.DisplayFor(i => item.TipoCampo)</td>
+                                    <td>
+                                        <a href="~/Encuesta/EditarCamposEncuesta/@item.Id" class="text-inverse" data-toggle="tooltip" data-original-title="Modificar"><i class="fa fa-pencil"></i></a>
+                                        <a href="~/Encuesta/EliminarCamposEncuesta/@item.Id" class="text-inverse" data-toggle="tooltip" data-original-title="Eliminar"> <i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-lg-10">
+                        <div class="grid-container text-truncate">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

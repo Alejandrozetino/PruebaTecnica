@@ -1,0 +1,197 @@
+﻿@using ACME.Helper;
+@model ACME.Models.CampoEncuestaDto;
+
+@{
+    Layout = "_Layout";
+    string valido = "";
+}
+
+<div class="card">
+    <div class="card-body" style="margin-top: 2px">
+        <div class="ml-2 align-self-center">
+            @if (Model.tipoManto == Constants.Agregar)
+            {
+                <h3 class="text-themecolor mb-0">Creación de encuesta</h3>
+            }
+            else
+            {
+                @if (Model.tipoManto == Constants.Modificar)
+                {
+                    <h3 class="text-themecolor mb-0">Modificación de encuesta</h3>
+                }
+                else
+                {
+                    <h3 class="text-themecolor mb-0">Eliminación de encuesta</h3>
+                }
+            }
+        </div>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-2">
+                <li class="breadcrumb-item"><a href="~/Home/Index">Home</a></li>
+                <li class="breadcrumb-item"><a href="~/Encuesta/IndexCamposEncuesta?IdEncuesta=@Model.IdEncuesta">Campos Encuesta</a></li>
+                <li class="breadcrumb-item active">@Constants.MantoBoton(Model.tipoManto)</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<br />
+
+<div class="container-fluid">
+    <div class="card" style="border:solid;top:-15px;border-color:#1e88e5;">
+        <div class="card-body">
+
+            <form asp-action="GrabarCamposEncuesta">
+                @Html.HiddenFor(model => model.Id)
+                @Html.HiddenFor(model => model.tipoManto)
+                @Html.HiddenFor(model => model.IdEncuesta)
+
+                <input type="hidden" asp-for="EsRequerido" id="estadoCheckbox" />
+
+                <div class="tab-content border" style="margin-top:-7px">
+                    <div class="tab-pane active" id="General" style="margin-top:15px;">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Nombre del campo</label>
+                            <div class="col-md-12">
+                                @if (!ViewData.ModelState.IsValid)
+                                {
+                                    if (ViewData.ModelState["NombreCampo"].ValidationState.ToString() == "Invalid")
+                                        valido = "is-invalid";
+                                }
+
+                                @if (Model.tipoManto != Constants.Eliminar)
+                                {
+                                    <input asp-for="NombreCampo" class="form-control @valido" />
+                                }
+                                else
+                                {
+                                    <input asp-for="NombreCampo" class="form-control @valido" readonly />
+                                }
+                                <span asp-validation-for="NombreCampo" class="invalid-feedback"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Titulo del campo</label>
+                            <div class="col-md-12">
+                                @if (!ViewData.ModelState.IsValid)
+                                {
+                                    if (ViewData.ModelState["TituloCampo"].ValidationState.ToString() == "Invalid")
+                                        valido = "is-invalid";
+                                }
+
+                                @if (Model.tipoManto != Constants.Eliminar)
+                                {
+                                    <input asp-for="TituloCampo" class="form-control @valido" />
+                                }
+                                else
+                                {
+                                    <input asp-for="TituloCampo" class="form-control @valido" readonly />
+                                }
+                                <span asp-validation-for="TituloCampo" class="invalid-feedback"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @if (Model.EsRequerido == true)
+                            {
+                                <div class="input-group">
+                                    <div class="form-check form-switch">
+                                        <label class="form-check-label" for="flexSwitchCheckDefault" style="margin-right:45px" id="switch01" name="switch01">Requerido</label>
+                                        <input class="form-check-input" type="checkbox" checked role="switch" id="radio_01" name="radio_01" onclick="CambiarEstado();">
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="input-group">
+                                    <div class="form-check form-switch">
+                                        <label class="form-check-label" for="flexSwitchCheckDefault" style="margin-right:45px" id="switch01" name="switch01">No requerido</label>
+                                        <input class="form-check-input" type="checkbox" role="switch" id="radio_01" name="radio_01" onclick="CambiarEstado();">
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Tipo de campo</label>
+                            <div class="col-md-12">
+                                @if (!ViewData.ModelState.IsValid)
+                                {
+                                    if (ViewData.ModelState["TipoCampo"].ValidationState.ToString() == "Invalid")
+                                        valido = "is-invalid";
+                                }
+
+                                @if (Model.tipoManto != Constants.Eliminar)
+                                {
+                                    <select asp-for="TipoCampo" asp-items="Model.TiposDeDatos" class="form-select @valido form-select-sm mb-12"></select>
+                                }
+                                else
+                                {
+                                    <select asp-for="TipoCampo" asp-items="Model.TiposDeDatos" class="form-select @valido form-select-sm mb-12" disabled></select>
+                                }
+                                <span asp-validation-for="TipoCampo" class="invalid-feedback"></span>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="margin-left:15px;margin-bottom:5px;" name="button" value="Grabar">@Constants.MantoBoton(Model.tipoManto)</button>
+                        <button type="submit" class="btn btn-primary" name="button" value="Salir" style="margin-bottom:5px;">Salir</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        @if (!ViewData.ModelState.IsValid)
+        {
+            @if (ViewData.ModelState.ContainsKey("Error"))
+            {
+                <br />
+                var error = ViewData.ModelState["Error"].Errors;
+                <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-bottom:-0px;">
+                    @foreach (var mensaje in error)
+                    {
+                        @Html.DisplayFor(x => mensaje.ErrorMessage)
+
+                        <br />
+                    }
+                </div>
+            }
+        }
+        else
+        {
+            <div class="card-footer text-danger div-show" style="padding:19px;background-color:#1e88e5;" id="PanelFooter" name="PanelFooter">
+                <div class="d-flex no-block text-white">
+                    @if (Model.tipoManto == Constants.Agregar)
+                    {
+                        @Constants.MensajeAgregar
+                        ;
+                    }
+                    else
+                    {
+                        @if (Model.tipoManto == Constants.Modificar)
+                        {
+                            @Constants.MensajeEditar
+                            ;
+                        }
+                        else
+                        {
+                            @Constants.MensajeEliminar
+                            ;
+                        }
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<script type="text/javascript">
+    function CambiarEstado() {
+        var valor = $("#radio_01").prop('checked');
+
+        if (valor == true) {
+            $("#estadoCheckbox").val(true);
+
+            $('#switch01').text("Requerido");
+        } else {
+            $("#estadoCheckbox").val(false);
+            $('#switch01').text("No requerido");
+        }
+    }
+</script>

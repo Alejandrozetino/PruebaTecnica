@@ -1,0 +1,97 @@
+﻿@using ACME.Entities
+@using ACME.Helper
+@model RecordList<CampoEncuesta>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>Llenar encuesta</title>
+</head>
+<body>
+    <div class="card">
+        <div class="card-body" style="margin-top: 2px">
+            <div class="ml-2 align-self-center">
+                <h2>Llenar Encuesta</h2>
+            </div>
+        </div>
+    </div>
+    <br />
+    
+    <div class="container-fluid">
+        <div class="card" style="border:solid;top:-15px;border-color:#1e88e5;">
+            <div class="card-body">
+                <form asp-action="GrabarRespuestas">
+
+                    <input type="hidden" name="Token" value="@ViewBag.Token" />
+
+
+                    @foreach (var campo in Model.Data)
+                    {
+                        <div class="form-group">
+                            <label for="@campo.NombreCampo">@campo.TituloCampo</label>
+                            @switch (campo.TipoCampo)
+                            {
+                                case "System.String":
+                                    @if(campo.EsRequerido == true)
+                                    {
+                                        <input type="text" class="form-control" id="@campo.NombreCampo" name="@campo.NombreCampo" required />
+                                    }else
+                                    {
+                                        <input type="text" class="form-control" id="@campo.NombreCampo" name="@campo.NombreCampo" />
+                                    }
+
+                                    break;
+
+                                case "System.Int32":
+                                    @if (campo.EsRequerido == true)
+                                    {
+                                        <input type="number" class="form-control" id="@campo.NombreCampo" name="@campo.NombreCampo" required />
+                                    }
+                                    else
+                                    {
+                                        <input type="number" class="form-control" id="@campo.NombreCampo" name="@campo.NombreCampo" />
+                                    }
+
+                                    break;
+
+                                case "System.DateTime":
+                                    @if (campo.EsRequerido == true)
+                                    {
+                                        <input type="date" class="form-control" id="@campo.NombreCampo" name="@campo.NombreCampo" required />
+                                    }
+                                    else
+                                    {
+                                        <input type="date" class="form-control" id="@campo.NombreCampo" name="@campo.NombreCampo" />
+                                    }
+                                    
+                                break;
+                            }
+                            <!-- Agrega más tipos de datos según sea necesario -->
+                        </div>
+                    }
+                
+                    <button type="submit" class="btn btn-primary" name="button" value="Salir" style="margin-bottom:5px;">Grabar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('form').on('submit', function() {
+            alert('¡La encuesta se ha enviado exitosamente!');
+        });
+    });
+</script>
